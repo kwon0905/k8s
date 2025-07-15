@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: existing-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: web-site
+  template:
+    metadata:
+      labels:
+        app: web-site
+    spec:
+      containers:
+      - name: existing-container
+        image: johnlee0405/update:blue
+        ports:
+        - containerPort: 80

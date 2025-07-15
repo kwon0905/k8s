@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: canary-deployment
+spec:
+  replicas: 1  # 초기에는 작은 비율로 시작
+  selector:
+    matchLabels:
+      app: web-site
+  template:
+    metadata:
+      labels:
+        app: web-site
+    spec:
+      containers:
+      - name: canary-container
+        image: johnlee0405/update:green
+        ports:
+        - containerPort: 80

@@ -1,0 +1,34 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: upload-logs-job
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: s3-uploader
+        image: amazon/aws-cli
+        command: ["sh", "-c"]
+        args:
+          - aws s3 cp /var/log/dnf.log s3://john0714/
+        env:
+        - name: AWS_ACCESS_KEY_ID
+          valueFrom:
+            secretKeyRef:
+              name: aws-secrets
+              key: access_key
+        - name: AWS_SECRET_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: aws-secrets
+              key: secret_key
+        - name: AWS_REGION
+          value: "ap-northeast-2"
+        volumeMounts:
+        - name: logs-volume
+          mountPath: /var/log/
+      volumes:
+      - name: logs-volume
+        hostPath:
+          path: /var/log/
