@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mysql-pod
+  namespace: default
+  labels:
+    app: mysql-pod
+spec:
+  containers:
+  - name: mysql-container
+    image: mysql:5.7
+    envFrom:
+    - configMapRef:
+        name: config-wordpress
+    - secretRef:
+        name: my-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-svc
+  namespace: default
+spec:
+  type: ClusterIP
+  selector:
+    app: mysql-pod
+  ports:
+  - protocol: TCP
+    port: 3306
+    targetPort: 3306

@@ -1,0 +1,13 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: cpu-load-test-job300
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: stress-test
+        image: polinux/stress
+        command: ["stress"]
+        args: ["--cpu", "4", "--timeout", "300"]

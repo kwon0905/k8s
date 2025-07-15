@@ -1,0 +1,13 @@
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: production
+  namespace: metallb-system
+spec:
+  # Production services will go here. Public IPs are expensive, so we leased
+  # just 4 of them.
+  addresses:
+  - 10.178.0.5/32
+  - 10.178.0.6/32
+  - 10.178.0.7/32
+  - 10.178.0.8/32

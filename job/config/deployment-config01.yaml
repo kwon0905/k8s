@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: configapp
+  namespace: default
+  labels:
+    app: configapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: configapp
+
+  template:
+    metadata:
+      labels:
+        app: configapp
+    spec:
+      containers:
+      - name: testapp
+        image: asia-northeast3-docker.pkg.dev/kwon-463802/my-regi/k8s:aws
+        env:
+        - name: DEBUG_LEVEL
+          valueFrom:
+            configMapKeyRef:
+              name: config-dev
+              key: DEBUG_INFO
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: configapp
+  name: configapp-svc
+  namespace: default
+spec:
+  type: NodePort
+  ports:
+  - nodePort: 30800
+    port: 8080
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: configapp

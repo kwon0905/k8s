@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sample-resource
+  namespace: dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sample-app
+  template:
+    metadata:
+      labels:
+        app: sample-app
+    spec:
+      containers:
+      - name: nginx-container
+        image: nginx:1.16
+        resources:
+          requests: # 최소
+            memory: "1Gi"
+            cpu: "1"
+          limits: # 최대
+            memory: "2Gi"
+            cpu: "4"

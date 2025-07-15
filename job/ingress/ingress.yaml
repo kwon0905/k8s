@@ -1,0 +1,32 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: example-ingress
+  #  annotations:
+  #    kubernetes.io/ingress.class: "nginx"
+spec:
+  ingressClassName: nginx      
+  rules:
+  - http:
+      paths:
+      - path: /sale
+        pathType: Prefix
+        backend:
+          service:
+            name: sale-service
+            port:
+              number: 80
+      - path: /food
+        pathType: Prefix
+        backend:
+          service:
+            name: food-service
+            port:
+              number: 80
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: aws-service
+            port:
+              number: 80

@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: sample-limitrange-container
+  namespace: dev
+spec:
+  limits:
+  - type: Container
+    default: # 컨테이너의 리소스 제한이 명시적으로 지정되지 않았을 때 사용되는 기본값을 정의하는 것
+      memory: 500Mi
+      cpu: 1000m
+    defaultRequest: # 컨테이너의 리소스 제한이 명시적으로 지정되지 않았을 때 사용되는 기본 제한 최소값을 정의하는 것
+      memory: 250Mi
+      cpu: 250m
+    max: # 컨테이너가 사용할 수 있는 자원의 최대 한계를 설정합니다. 컨테이너는 이 값을 넘는 리소스를 요청하거나 사용할 수 없습니다.
+      memory: 500Mi
+      cpu: 1000m
+    min: # 컨테이너가 요청할 수 있는 자원의 최소값을 설정합니다. 최소한 이만큼의 리소스를 요청해야 합니다.
+      memory: 250Mi
+      cpu: 250m
+    maxLimitRequestRatio: # limit과 request 값의 최대 비율을 정의합니다. 이 설정을 통해, limit이 request의 몇 배까지 설정될 수 있는지 제어합니다.
+      memory: 2 # 메모리의 경우, limit은 request의 최대 2배까지 설정될 수 있습니다.
+      cpu: 4 # CPU의 경우, limit은 request의 최대 4배까지 설정될 수 있습니다.

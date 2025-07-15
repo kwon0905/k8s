@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sample-pod-request
+  namespace: dev
+spec:
+  containers:
+  - name: nginx-container
+    image: nginx
+    resources:
+      requests:
+        cpu: 250m
+      limits:
+        cpu: 250m

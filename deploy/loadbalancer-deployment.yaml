@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: loadbalancer-deployment
+spec:
+  type: LoadBalancer
+  #  externalIPs:
+  # - 10.178.0.7						# worker2
+  # - 10.178.0.8						# worker3
+  selector:
+    app: nginx-deploy
+  ports:
+  - protocol: TCP
+    port: 80
