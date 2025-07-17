@@ -4,10 +4,10 @@ metadata:
   name: nfs-pv
 spec:
   capacity:
-    storage: 100Mi
+    storage: 1000Mi
   accessModes:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain	  # Delete
   nfs:
-    server: 10.178.0.5
+    server: 10.232.149.18
     path: /nfs_shared

@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: nfs-pvc-deploy
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       app: nfs-pvc-deploy

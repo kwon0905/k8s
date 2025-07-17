@@ -3,9 +3,10 @@ kind: PersistentVolumeClaim
 metadata:
   name: nfs-pvc
 spec:
-  storageClassName: manual      
+  storageClassName: standard-rwx      
   accessModes:
     - ReadWriteMany
   resources:
     requests:
       storage: 1Ti
+  volumeName: nfs-pv

@@ -10,7 +10,7 @@ spec:
     image: nginx
     ports:
     - containerPort: 80
-  nodeName: worker2
+  nodeName: gke-gke-cluster-default-pool-a90a1575-hcwn
 ---
 apiVersion: v1
 kind: Service
