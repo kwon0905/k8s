@@ -1,0 +1,9 @@
+# Terraform .terraform/ directory
+.terraform/
+
+# Terraform state files (선택 사항이지만, 원격 백엔드를 사용한다면 추가 권장)
+*.tfstate
+*.tfstate.backup
+
+# Terraform crash log files
+*.log
